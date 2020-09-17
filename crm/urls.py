@@ -16,6 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# https://docs.djangoproject.com/en/3.1/intro/tutorial01/#write-your-first-view
+from django.http import HttpResponse
+
+# https://docs.djangoproject.com/en/3.1/ref/request-response/
+def home(request):
+    return HttpResponse("Home page")
+
+def contact(request):
+    return HttpResponse('Contact page')
+
 urlpatterns = [
+    # https://docs.djangoproject.com/en/3.1/ref/urls/
+    # https://docs.djangoproject.com/en/3.1/topics/http/urls/
     path('admin/', admin.site.urls),
+    path('', home),
+    path('contact/', contact),
 ]

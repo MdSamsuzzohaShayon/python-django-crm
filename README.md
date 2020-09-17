@@ -13,7 +13,15 @@
 ### Making app 
 
  7. [Creating an app](https://docs.djangoproject.com/en/3.1/ref/django-admin/#startapp) `python manage.py startapp accounts`
- 8. 
+ 
+### Making templates
+
+ 8. Make a folder with name of **templates** inside an app
+ 9. [Overriding templates](https://docs.djangoproject.com/en/3.1/howto/overriding-templates/) [templating tutorial ](https://docs.djangoproject.com/en/3.1/intro/tutorial03/)
+ 10. [Extending an overridden template](https://docs.djangoproject.com/en/3.1/howto/overriding-templates/#extending-an-overridden-template)
+ 11. [Built in tags and filter](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/)
+ 
+ 
 
  
  

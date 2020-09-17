@@ -25,6 +25,6 @@ urlpatterns = [
     # http://127.0.0.1:8000/products/
     path('products/', views.products),
     # http://127.0.0.1:8000/customers/
-    path('customers/', views.customers), 
-
+    path('customer/', views.customer),
+    path('about/', views.about),
 ]

@@ -15,11 +15,23 @@
         <div class="card card-body">
             <a href="" class="btn btn-primary btn-sm btn-block">Create customer</a>
             <table class="table table-sm">
+                <thead>
                 <tr>
-                    <th>Something</th>
                     <th>Customer</th>
-                    <th>Orders</th>
+                    <th>Phone</th>
                 </tr>
+                </thead>
+
+
+                <tbody>
+                {% for customer in custemers %}
+                <tr>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.phone}}</td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
@@ -29,6 +41,7 @@
         <div class="card card-body">
             <a href="" class="btn btn-primary btn-sm btn-block">Create order</a>
             <table class="table table-sm">
+                <thead>
                 <tr>
                     <th>Product</th>
                     <th>Date Ordered</th>
@@ -36,6 +49,21 @@
                     <th>Update</th>
                     <th>Remove</th>
                 </tr>
+                </thead>
+
+                <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{order.product}}</td>
+                    <td>{{order.date_created}}</td>
+                    <td>{{order.status}}</td>
+                    <td><a href="" class="btn btn-primary">Update</a></td>
+                    <td><a href="" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+
             </table>
         </div>
     </div>

@@ -14,6 +14,16 @@ class Customer(models.Model):
         return self.name
 
 
+# https://docs.djangoproject.com/en/3.1/intro/tutorial02/#creating-models
+class Tag(models.Model):
+    # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.CharField
+    name = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+
 class Product (models.Model):
     # https://docs.python.org/3.3/library/stdtypes.html?highlight=tuple#tuples
     CATEGORY = (
@@ -24,8 +34,12 @@ class Product (models.Model):
     # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.FloatField
     price = models.FloatField(null=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
-    description = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
@@ -36,7 +50,9 @@ class Order(models.Model):
         ('Delivered', 'Delivered'),
     )
 
-    #customer =
-    #product =
+    # https://docs.djangoproject.com/en/3.1/topics/db/examples/many_to_many/
+    # https://docs.djangoproject.com/en/3.1/topics/db/examples/many_to_one/#many-to-one-relationships
+    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)

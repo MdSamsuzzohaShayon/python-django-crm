@@ -17,6 +17,7 @@
             <table class="table table-sm">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>Customer</th>
                     <th>Phone</th>
                 </tr>
@@ -26,6 +27,8 @@
                 <tbody>
                 {% for customer in custemers %}
                 <tr>
+<!--                    # https://docs.djangoproject.com/en/3.1/topics/http/urls/#reverse-resolution-of-urls-->
+                    <td><a class="btn btn-info" href="{% url 'customer' customer.id %}">View</a></td>
                     <td>{{customer.name}}</td>
                     <td>{{customer.phone}}</td>
 

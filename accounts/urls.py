@@ -21,11 +21,12 @@ from . import views
 urlpatterns = [
     # https://docs.djangoproject.com/en/3.1/ref/urls/
     # https://docs.djangoproject.com/en/3.1/topics/http/urls/
-    path('', views.home),
+    path('', views.home, name="home"),
     # http://127.0.0.1:8000/products/
-    path('products/', views.products),
+    path('products/', views.products, name="products"),
     # http://127.0.0.1:8000/customers/
     # https://docs.djangoproject.com/en/3.1/topics/http/urls/
-    path('customer/<str:pk_test>/', views.customer),
+    # https://docs.djangoproject.com/en/3.1/topics/http/urls/#reverse-resolution-of-urls
+    path('customer/<str:pk_test>/', views.customer, name="customer"),
     path('about/', views.about),
 ]

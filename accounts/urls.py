@@ -25,6 +25,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/products/
     path('products/', views.products),
     # http://127.0.0.1:8000/customers/
-    path('customer/', views.customer),
+    # https://docs.djangoproject.com/en/3.1/topics/http/urls/
+    path('customer/<str:pk_test>/', views.customer),
     path('about/', views.about),
 ]

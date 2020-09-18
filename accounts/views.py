@@ -36,8 +36,18 @@ def products(request):
     # https://docs.python.org/3/tutorial/datastructures.html#dictionaries
     return render(request, 'accounts/products.html', {'products': products})
 
-def customer(request):
-    return render(request, 'accounts/customer.html')
+
+def customer(request, pk_test):
+    customer = Customer.objects.get(id=pk_test)
+    orders = customer.order_set.all()
+    order_count = orders.count()
+
+    context = {
+        'customer' : customer,
+        "orders" : orders,
+        "order_count": order_count
+    }
+    return render(request, 'accounts/customer.html', context)
 
 def about(request):
     return HttpResponse('About page')

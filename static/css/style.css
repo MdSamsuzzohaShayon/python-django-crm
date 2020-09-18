@@ -1,0 +1,22 @@
+        a{
+            color: black;
+        }
+        .whole-site{
+            width: 100%;
+            height: 100vh;
+            background-image: url(https://c.pxhere.com/photos/b6/7f/lake_sunset_abendstimmung_clouds_nature_water_sky_atmospheric-1438355.jpg!d);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        #total-orders{
+            background-color: #4cb4c7;
+        }
+
+        #orders-delivered{
+            background-color: #7abecc;
+        }
+
+        #orders-pending{
+            background-color: #7CD1C0;
+        }

@@ -20,7 +20,11 @@
  9. [Overriding templates](https://docs.djangoproject.com/en/3.1/howto/overriding-templates/) [templating tutorial ](https://docs.djangoproject.com/en/3.1/intro/tutorial03/)
  10. [Extending an overridden template](https://docs.djangoproject.com/en/3.1/howto/overriding-templates/#extending-an-overridden-template)
  11. [Built in tags and filter](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/)
+
+### [Managing static files](https://docs.djangoproject.com/en/3.1/howto/static-files/)
  
+ 12. Make sure that django.contrib.staticfiles is included in your INSTALLED_APPS.
+ 13. In your settings file, define STATIC_URL, for example: `STATIC_URL = '/static/'` 
  
 
  

@@ -8,6 +8,9 @@
  4. [Create new project](https://docs.djangoproject.com/en/3.1/intro/tutorial01/#creating-a-project) `django-admin startproject crm` & `cd crm`
  5. [Run the server](https://docs.djangoproject.com/en/3.1/intro/tutorial01/#the-development-server) `python manage.py runserver`
  6. Show in browser __http://127.0.0.1:8000__
+ 
+ 
+### [Django Admin](https://docs.djangoproject.com/en/3.1/ref/django-admin/#)
 
 
 ### Making app 
@@ -24,8 +27,21 @@
 ### [Managing static files](https://docs.djangoproject.com/en/3.1/howto/static-files/)
  
  12. Make sure that django.contrib.staticfiles is included in your INSTALLED_APPS.
- 13. In your settings file, define STATIC_URL, for example: `STATIC_URL = '/static/'` 
+ 13. In your settings file, define STATIC_URL, for example: `STATIC_URL = '/static/'`
  
+ 
+### Database Models 
+ 14. [Migrating database](https://docs.djangoproject.com/en/3.1/ref/django-admin/#migrate) `python manage.py migrate`
+ 15. [For SqLite](https://docs.djangoproject.com/en/3.1/topics/migrations/) 
+ ```
+python manage.py makemigrations
+python manage.py migrate
+ ```
+
+### [Create admin user](https://docs.djangoproject.com/en/1.8/intro/tutorial02/#creating-an-admin-user) 
+
+16. `python manage.py createsuperuser`
+
 
  
  

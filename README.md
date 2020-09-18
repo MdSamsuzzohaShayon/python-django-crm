@@ -42,6 +42,11 @@ python manage.py migrate
 
 16. `python manage.py createsuperuser`
 
+### Database Model Queries
+
+17. [QuerySet API Reference](https://docs.djangoproject.com/en/3.1/ref/models/querysets/)
+18. [Making queries](https://docs.djangoproject.com/en/3.1/topics/db/queries/) [using shell](https://docs.djangoproject.com/en/3.1/ref/django-admin/) `python manage.py shell` or `django-admin shell`
+19. 
 
  
  

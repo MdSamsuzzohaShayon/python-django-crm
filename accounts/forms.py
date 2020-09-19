@@ -8,3 +8,5 @@ class OrderForm(ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+        # FOR ALL INDIVIDUAL ITEMS USE THE VARIABLE FROM ORDER MODEL
+        # fields = ["customer", 'product']

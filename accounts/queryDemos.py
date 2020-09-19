@@ -1,5 +1,12 @@
 # https://docs.djangoproject.com/en/3.1/ref/models/querysets/
 # https://docs.djangoproject.com/en/3.1/ref/django-admin/
+
+# OPEN PYTHON DJANGO SHELL
+# python manage.py shell
+
+#IMPORT SPECEFIC OBJECT
+from accounts.models import *
+
 #***(1)Returns all customers from customer table
 customers = Customer.objects.all()
 

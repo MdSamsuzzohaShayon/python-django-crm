@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # https://docs.djangoproject.com/en/3.1/intro/tutorial01/#write-your-first-view
 from django.http import HttpResponse
 from .models import *
@@ -69,8 +69,13 @@ def customer(request, pk_test):
 
 def createOrder(request):
     form = OrderForm()
+#    3 BY DEFAULT IT'S GET REQUEST BUT WE ARE MAKING IT POST'
     if request.method == "POST":
-        print('Printing post: ', request.POST)
+        #print('Printing post: ', request.POST)
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
     context = {
         "form" : form
     }

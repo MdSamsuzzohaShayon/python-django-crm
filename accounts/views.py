@@ -2,6 +2,8 @@ from django.shortcuts import render
 # https://docs.djangoproject.com/en/3.1/intro/tutorial01/#write-your-first-view
 from django.http import HttpResponse
 from .models import *
+from .forms import OrderForm
+
 
 
 # Create your views here.
@@ -31,10 +33,19 @@ def home(request):
     # https://docs.djangoproject.com/en/3.1/intro/tutorial03/#a-shortcut-render
     return render(request, 'accounts/dashboard.html', context)
 
+
+
+
+
 def products(request):
     products = Product.objects.all()
     # https://docs.python.org/3/tutorial/datastructures.html#dictionaries
     return render(request, 'accounts/products.html', {'products': products})
+
+
+
+
+
 
 
 def customer(request, pk_test):
@@ -48,6 +59,22 @@ def customer(request, pk_test):
         "order_count": order_count
     }
     return render(request, 'accounts/customer.html', context)
+
+
+
+
+
+
+
+
+def createOrder(request):
+    form = OrderForm()
+    if request.method == "POST":
+        print('Printing post: ', request.POST)
+    context = {
+        "form" : form
+    }
+    return render(request, "accounts/order_form.html", context)
 
 def about(request):
     return HttpResponse('About page')

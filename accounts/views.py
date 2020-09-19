@@ -66,8 +66,9 @@ def customer(request, pk_test):
 
 
 
-def createOrder(request):
-    form = OrderForm()
+def createOrder(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = OrderForm(initial={'customer': customer})
 #    3 BY DEFAULT IT'S GET REQUEST BUT WE ARE MAKING IT POST'
     if request.method == "POST":
         #print('Printing post: ', request.POST)

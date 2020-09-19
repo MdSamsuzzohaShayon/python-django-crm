@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 # https://docs.djangoproject.com/en/3.1/intro/tutorial01/#write-your-first-view
 from django.http import HttpResponse
+# https://docs.djangoproject.com/en/3.1/ref/forms/models/#inlineformset-factory
+# https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/#inline-formsets
+from django.forms import inlineformset_factory
 from .models import *
 from .forms import OrderForm
 
@@ -67,17 +70,21 @@ def customer(request, pk_test):
 
 
 def createOrder(request, pk):
+    # https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/#inline-formsets
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10)
     customer = Customer.objects.get(id=pk)
-    form = OrderForm(initial={'customer': customer})
+    formset = OrderFormSet( queryset=Order.objects.none() ,instance = customer)
+    # form = OrderForm(initial={'customer': customer})
 #    3 BY DEFAULT IT'S GET REQUEST BUT WE ARE MAKING IT POST'
     if request.method == "POST":
         #print('Printing post: ', request.POST)
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
+        #form = OrderForm(request.POST)
+        formset = OrderFormSet(request.POST, instance=customer)
+        if formset.is_valid():
+            formset.save()
             return redirect('/')
     context = {
-        "form" : form
+        "formset" : formset
     }
     return render(request, "accounts/order_form.html", context)
 

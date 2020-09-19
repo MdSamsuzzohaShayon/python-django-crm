@@ -29,5 +29,6 @@ urlpatterns = [
     # https://docs.djangoproject.com/en/3.1/topics/http/urls/#reverse-resolution-of-urls
     path('customer/<str:pk_test>/', views.customer, name="customer"),
     path('create_order/', views.createOrder, name="create_order"),
+    path('update_order/<str:pk>', views.updateOrder, name="update_order"),
     path('about/', views.about),
 ]

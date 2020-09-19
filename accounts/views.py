@@ -9,7 +9,6 @@ from .forms import OrderForm
 # Create your views here.
 
 
-
 # https://docs.djangoproject.com/en/3.1/ref/request-response/
 def home(request):
     orders = Order.objects.all()
@@ -80,6 +79,30 @@ def createOrder(request):
         "form" : form
     }
     return render(request, "accounts/order_form.html", context)
+
+
+
+
+def updateOrder(request, pk):
+    order = Order.objects.get(id=pk)
+    form = OrderForm(instance=order)
+    if request.method == "POST":
+        #print('Printing post: ', request.POST)
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        "form": form
+    }
+    return render(request, "accounts/order_form.html", context)
+
+
+
+
+
+
+
 
 def about(request):
     return HttpResponse('About page')

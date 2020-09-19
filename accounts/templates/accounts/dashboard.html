@@ -27,7 +27,7 @@
                 <tbody>
                 {% for customer in custemers %}
                 <tr>
-<!--                    # https://docs.djangoproject.com/en/3.1/topics/http/urls/#reverse-resolution-of-urls-->
+                    <!--                    # https://docs.djangoproject.com/en/3.1/topics/http/urls/#reverse-resolution-of-urls-->
                     <td><a class="btn btn-info" href="{% url 'customer' customer.id %}">View</a></td>
                     <td>{{customer.name}}</td>
                     <td>{{customer.phone}}</td>
@@ -60,7 +60,7 @@
                     <td>{{order.product}}</td>
                     <td>{{order.date_created}}</td>
                     <td>{{order.status}}</td>
-                    <td><a href="" class="btn btn-primary">Update</a></td>
+                    <td><a href="{% url 'update_order' order.id %}" class="btn btn-primary">Update</a></td>
                     <td><a href="" class="btn btn-danger">Delete</a></td>
                 </tr>
                 {% endfor %}

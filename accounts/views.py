@@ -4,12 +4,35 @@ from django.http import HttpResponse
 # https://docs.djangoproject.com/en/3.1/ref/forms/models/#inlineformset-factory
 # https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/#inline-formsets
 from django.forms import inlineformset_factory
+from django.contrib.auth.forms import UserCreationForm
+
 from .models import *
 from .forms import OrderForm
 from .filters import OrderFilter
 
 
 # Create your views here.
+
+
+# https://docs.djangoproject.com/en/1.8/_modules/django/contrib/auth/forms/
+def registerPage (request):
+    form = UserCreationForm()
+    context ={
+        "form": form
+    }
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return render(request, 'accounts/register.html', context)
+
+
+
+def loginrPage (request):
+    context ={}
+    return render(request, 'accounts/login.html', context)
+
+
 
 
 # https://docs.djangoproject.com/en/3.1/ref/request-response/

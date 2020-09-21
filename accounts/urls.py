@@ -22,7 +22,8 @@ urlpatterns = [
     # https://docs.djangoproject.com/en/3.1/ref/urls/
     # https://docs.djangoproject.com/en/3.1/topics/http/urls/
     path('register/', views.registerPage, name="register"),
-    path('login/', views.loginrPage, name="login"),
+    path('login/', views.loginPage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
     path('', views.home, name="home"),
     # http://127.0.0.1:8000/products/
     path('products/', views.products, name="products"),

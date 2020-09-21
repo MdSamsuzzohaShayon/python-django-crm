@@ -5,6 +5,12 @@ from django.http import HttpResponse
 # https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/#inline-formsets
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
+# https://docs.djangoproject.com/en/3.0/ref/contrib/messages/#using-messages-in-views-and-templates
+from django.contrib import messages
+
+# https://docs.djangoproject.com/en/3.1/ref/contrib/auth/#module-django.contrib.auth.signals
+# https://docs.djangoproject.com/en/3.1/topics/auth/default/#how-to-log-a-user-in
+from django.contrib.auth import authenticate, login, logout
 
 from .models import *
 from .forms import OrderForm, CreateUserForm
@@ -17,13 +23,16 @@ from .filters import OrderFilter
 # https://docs.djangoproject.com/en/1.8/_modules/django/contrib/auth/forms/
 def registerPage (request):
     form = CreateUserForm()
-    context ={
-        "form": form
-    }
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, "Account was created for " + user)
+            return redirect('login')
+    context ={
+        "form": form
+    }
     return render(request, 'accounts/register.html', context)
 
 

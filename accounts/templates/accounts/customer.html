@@ -50,7 +50,7 @@
                 <thead class="bg-dark text-white">
                 <tr>
                     <td>Product</td>
-                    <td>Category</td>
+                    <td>Note</td>
                     <td>Date Ordered</td>
                     <td>Status</td>
                     <td>Update</td>
@@ -61,7 +61,7 @@
                 {% for order in orders %}
                 <tr>
                     <td>{{order.product}}</td>
-                    <td>{{order.product.category}}</td>
+                    <td>{{order.note}}</td>
                     <td>{{order.date_create}}</td>
                     <td>{{order.status}}</td>
                     <td><a href="{% url 'update_order' order.id %}" class="btn btn-primary">Update</a></td>

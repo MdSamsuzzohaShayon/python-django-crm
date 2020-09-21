@@ -1,6 +1,10 @@
 <h2>register</h2>
 <form action="" method="POST" class="form form-dark">
     {% csrf_token %}
-    {{form.as_p}}
+<!--    {{form.as_p}}-->
+
+    {% for field in form %}
+        {{field}}
+    {% endfor %}
     <input type="submit"  name="Create User">
 </form>

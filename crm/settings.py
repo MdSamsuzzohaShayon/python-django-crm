@@ -133,3 +133,5 @@ STATICFILES_DIRS =[
     # https://docs.python.org/3/library/os.html
     os.path.join(BASE_DIR, 'static')
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')

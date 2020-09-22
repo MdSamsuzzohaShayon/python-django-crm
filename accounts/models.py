@@ -12,6 +12,8 @@ class Customer(models.Model):
 
     phone =  models.CharField(max_length=200, null=True)
     email =  models.CharField(max_length=200, null=True)
+    # https://docs.djangoproject.com/en/3.1/ref/models/fields/#imagefield
+    profile_pic = models.ImageField(null=True, blank=True)
     # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.DateTimeField
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 

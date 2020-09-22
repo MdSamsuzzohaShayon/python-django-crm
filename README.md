@@ -57,6 +57,14 @@ python manage.py migrate
 
 20. `pip install django-filter`
 
+### [Install pillow}(https://pillow.readthedocs.io/en/latest/installation.html#basic-installation)
+
+21. PIL is the Python Imaging Library by Fredrik Lundh and Contributors. 
+
+```
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade Pillow
+```
 
 
  

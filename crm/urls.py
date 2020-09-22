@@ -16,6 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# SETTING STATIC FILES URLS PATTERN
+# Helper function to return a URL pattern for serving files in debug mode:
+# https://docs.djangoproject.com/en/1.8/ref/urls/#static
+from django.conf.urls.static import static
+# In your Django apps, use settings by importing the object django.conf.settings.
+# https://docs.djangoproject.com/en/3.1/topics/settings/#using-settings-in-python-code
+from django.conf import settings
+from pyatspi import document
 
 urlpatterns = [
     # https://docs.djangoproject.com/en/3.1/ref/urls/
@@ -23,3 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls'))
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# check image url http://localhost:8000/img/mbappe.jpg

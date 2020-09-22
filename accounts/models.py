@@ -6,14 +6,14 @@ from django.contrib.auth.models import User
 # https://docs.djangoproject.com/en/3.1/intro/tutorial02/#creating-models
 class Customer(models.Model):
     # https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/
-    user  = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user  = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.CharField
     name = models.CharField(max_length=200, null=True)
 
     phone =  models.CharField(max_length=200, null=True)
     email =  models.CharField(max_length=200, null=True)
     # https://docs.djangoproject.com/en/3.1/ref/models/fields/#imagefield
-    profile_pic = models.ImageField(null=True, blank=True)
+    profile_pic = models.ImageField(default="default-pro-pic.jpg", null=True, blank=True)
     # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.DateTimeField
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 

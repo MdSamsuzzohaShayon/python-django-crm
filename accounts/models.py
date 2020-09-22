@@ -1,10 +1,15 @@
 from django.db import models
+# https://docs.djangoproject.com/en/3.0/topics/auth/customizing/
+from django.contrib.auth.models import User
 
 # Create your models here.
 # https://docs.djangoproject.com/en/3.1/intro/tutorial02/#creating-models
 class Customer(models.Model):
+    # https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/
+    user  = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.CharField
     name = models.CharField(max_length=200, null=True)
+
     phone =  models.CharField(max_length=200, null=True)
     email =  models.CharField(max_length=200, null=True)
     # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.DateTimeField

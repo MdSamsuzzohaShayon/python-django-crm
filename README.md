@@ -53,5 +53,11 @@ python manage.py migrate
 19. [Make two group from admin page] 1. **admin** 2. **customer** and add user group
 
 
+### [Django filter](https://pypi.org/project/django-filter/)
+
+20. `pip install django-filter`
+
+
+
  
  

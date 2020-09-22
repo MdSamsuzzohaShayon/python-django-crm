@@ -14,12 +14,13 @@ from django.contrib.auth import authenticate, login, logout
 # https://docs.djangoproject.com/en/2.2/_modules/django/contrib/auth/decorators/
 # https://docs.djangoproject.com/en/2.2/topics/auth/default/#django.contrib.auth.decorators.login_required
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 
 from .models import *
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
 
-from .decorators import unauthenticated_user, allowed_users
+from .decorators import unauthenticated_user, allowed_users, admin_only
 
 
 # Create your views here.
@@ -33,9 +34,11 @@ def registerPage (request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, "Account was created for " + user)
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name="customer")
+            user.groups.add(group)
+            messages.success(request, "Account was created for " + username)
             return redirect('login')
     context ={
         "form": form
@@ -73,7 +76,7 @@ def logoutUser(request):
 # https://docs.djangoproject.com/en/2.2/topics/auth/default/#django.contrib.auth.decorators.login_required
 # https://docs.djangoproject.com/en/3.1/ref/request-response/
 @login_required(login_url='login')
-@allowed_users(allowed_roles=["admin"])
+@admin_only
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()

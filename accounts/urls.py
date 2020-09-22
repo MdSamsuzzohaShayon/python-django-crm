@@ -25,6 +25,7 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('', views.home, name="home"),
+    path('user/', views.userPage, name="user-page"),
     # http://127.0.0.1:8000/products/
     path('products/', views.products, name="products"),
     # http://127.0.0.1:8000/customers/

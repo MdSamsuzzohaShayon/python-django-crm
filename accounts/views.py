@@ -19,6 +19,8 @@ from .models import *
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
 
+from .decorators import unauthenticated_user
+
 
 # Create your views here.
 
@@ -44,24 +46,22 @@ def registerPage (request):
 
 
 
+@unauthenticated_user
 def loginPage (request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        if(request.method == 'POST'):
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+    if(request.method == 'POST'):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-            user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
-            if user is not None:
-                login(request , user)
-                return redirect('home')
-            else:
-                messages.info(request, "Username or password is incorrect")
+        if user is not None:
+            login(request , user)
+            return redirect('home')
+        else:
+            messages.info(request, "Username or password is incorrect")
 
-        context ={}
-        return render(request, 'accounts/login.html', context)
+    context ={}
+    return render(request, 'accounts/login.html', context)
 
 
 
@@ -95,6 +95,11 @@ def home(request):
 
     # https://docs.djangoproject.com/en/3.1/intro/tutorial03/#a-shortcut-render
     return render(request, 'accounts/dashboard.html', context)
+
+
+def userPage(request):
+    context = {}
+    return render(request, 'accounts/user.html', context)
 
 
 

@@ -46,7 +46,12 @@ python manage.py migrate
 
 17. [QuerySet API Reference](https://docs.djangoproject.com/en/3.1/ref/models/querysets/)
 18. [Making queries](https://docs.djangoproject.com/en/3.1/topics/db/queries/) [using shell](https://docs.djangoproject.com/en/3.1/ref/django-admin/) `python manage.py shell` or `django-admin shell`
-19. 
+
+
+### User role
+
+19. [Make two group from admin page] 1. **admin** 2. **customer** and add user group
+
 
  
  

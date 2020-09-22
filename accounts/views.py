@@ -19,30 +19,28 @@ from .models import *
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
 
-from .decorators import unauthenticated_user
+from .decorators import unauthenticated_user, allowed_users
 
 
 # Create your views here.
 
 
+# ACTUALLY IN UNAUTHENTICATED USER FUNCTION TAKING THIS REGISTER PAGE FUNCTION AS PARAMETER
 # https://docs.djangoproject.com/en/1.8/_modules/django/contrib/auth/forms/
+@unauthenticated_user
 def registerPage (request):
-    # https://docs.djangoproject.com/en/3.1/ref/contrib/auth/#django.contrib.auth.models.User.is_authenticated
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        form = CreateUserForm()
-        if request.method == "POST":
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, "Account was created for " + user)
-                return redirect('login')
-        context ={
-            "form": form
-        }
-        return render(request, 'accounts/register.html', context)
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, "Account was created for " + user)
+            return redirect('login')
+    context ={
+        "form": form
+    }
+    return render(request, 'accounts/register.html', context)
 
 
 
@@ -71,9 +69,11 @@ def logoutUser(request):
 
 
 
+# ALLOWED USERS FUNCTION  WILL WORK INSIDE LOGIN REQUIRED FUNCTION
 # https://docs.djangoproject.com/en/2.2/topics/auth/default/#django.contrib.auth.decorators.login_required
 # https://docs.djangoproject.com/en/3.1/ref/request-response/
 @login_required(login_url='login')
+@allowed_users(allowed_roles=["admin"])
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
@@ -105,6 +105,7 @@ def userPage(request):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=["admin"])
 def products(request):
     products = Product.objects.all()
     # https://docs.python.org/3/tutorial/datastructures.html#dictionaries
@@ -117,6 +118,7 @@ def products(request):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=["admin"])
 def customer(request, pk_test):
     customer = Customer.objects.get(id=pk_test)
     orders = customer.order_set.all()
@@ -143,6 +145,7 @@ def customer(request, pk_test):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=["admin"])
 def createOrder(request, pk):
     # https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/#inline-formsets
     OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10)
@@ -165,6 +168,7 @@ def createOrder(request, pk):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=["admin"])
 def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(instance=order)
@@ -182,6 +186,7 @@ def updateOrder(request, pk):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=["admin"])
 def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
     if request.method == "POST":
